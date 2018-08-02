@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import './Article.css'
+import Comments from '../CommentList/CommentsList';
 
 export default class Article extends Component {
   constructor(props) {
@@ -31,7 +32,12 @@ export default class Article extends Component {
       return null;
     }
     const {articleData} = this.props;
-    return <section className='articleText'>{articleData.text}</section>
+
+    return (
+    <section className='articleText'>{articleData.text}
+      <Comments commentsData = {articleData.comments}/>
+    </section>
+    )
   }
 
   toggleOpen = () => {
