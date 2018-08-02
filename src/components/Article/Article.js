@@ -1,8 +1,17 @@
 import React, {Component} from 'react';
+import PropTypes from 'prop-types'
 import './Article.css'
 import Comments from '../CommentList/CommentsList';
 
 export default class Article extends Component {
+  static propTypes = {
+    articleData: PropTypes.shape({
+      id: PropTypes.string.isRequired,
+      title: PropTypes.string.isRequired,
+      text: PropTypes.string
+    }).isRequired
+  };
+
   constructor(props) {
     super(props);
 
