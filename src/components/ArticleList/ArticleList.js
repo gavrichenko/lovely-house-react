@@ -1,33 +1,21 @@
-import React, {Component} from 'react';
+import React from 'react';
 import Article from '../Article/Article'
 
-export default class ArticleList extends Component {
-  constructor(props) {
-    super(props);
+export default function ArticleList({articleData}) {
 
-    this.state = {
-      isOpen: false,
-    }
-  }
-
-  render() {
-
+  const articleElements = articleData.map((el, index) => {
     return (
-      <div className='articleList'>
-        {Article}
-      </div>
+    <li key={el.id}>
+      <Article articleData = {el} articleNumber = {index + 1}/>
+    </li>
     )
-  }
+  });
 
+  return (
+    <div className="articleListComponent">
+      <ul>
+        {articleElements}
+      </ul>
+    </div>
+  )
 }
-
-// export default function ArticleList(props) {
-//   const {articleData} = props;
-//
-//   return (
-//     <div>
-//       <h3>{ articleData.title } </h3>
-//       <section>{articleData.text}</section>
-//     </div>
-//   )
-// }

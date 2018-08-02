@@ -12,11 +12,12 @@ export default class Article extends Component {
 
   render() {
     const {articleData} = this.props;
+    const {articleNumber} = this.props;
     const {isOpen} = this.state;
 
     return (
       <div className='articleComponent'>
-        <h3 className = 'articleTitle'>{ articleData.title } </h3>
+        <h3 className = 'articleTitle'>{articleNumber} - { articleData.title } </h3>
         <button className='showArticleBtn' onClick = {this.toggleOpen} >
           {isOpen ? 'close' : 'open'}
         </button>
