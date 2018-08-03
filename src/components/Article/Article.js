@@ -9,26 +9,21 @@ export default class Article extends Component {
       id: PropTypes.string.isRequired,
       title: PropTypes.string.isRequired,
       text: PropTypes.string
-    }).isRequired
+    }).isRequired,
+    isOpen: PropTypes.bool,
+    toggleOpen: PropTypes.func
   };
-
-  constructor(props) {
-    super(props);
-
-    this.state = {
-      isOpen: false,
-    }
-  }
 
   render() {
     const {articleData} = this.props;
     const {articleNumber} = this.props;
-    const {isOpen} = this.state;
+    const {isOpen} = this.props;
+    const {toggleOpen} = this.props;
 
     return (
       <div className='articleComponent'>
         <h3 className = 'articleTitle'>{articleNumber} - { articleData.title } </h3>
-        <button className='showArticleBtn' onClick = {this.toggleOpen} >
+        <button className='showArticleBtn' onClick = {toggleOpen} >
           {isOpen ? 'close' : 'open'}
         </button>
         {this.getBody()}
@@ -37,10 +32,12 @@ export default class Article extends Component {
   }
 
   getBody() {
-    if (!this.state.isOpen) {
+    const {isOpen} = this.props;
+    const {articleData} = this.props;
+
+    if (!isOpen) {
       return null;
     }
-    const {articleData} = this.props;
 
     return (
     <section className='articleText'>{articleData.text}
@@ -48,22 +45,4 @@ export default class Article extends Component {
     </section>
     )
   }
-
-  toggleOpen = () => {
-    this.setState({
-      isOpen: !this.state.isOpen
-    })
-  }
-
 }
-
-// export default function ArticleList(props) {
-//   const {articleData} = props;
-//
-//   return (
-//     <div>
-//       <h3>{ articleData.title } </h3>
-//       <section>{articleData.text}</section>
-//     </div>
-//   )
-// }
