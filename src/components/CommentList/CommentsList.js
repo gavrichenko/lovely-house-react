@@ -1,5 +1,6 @@
 import React, {Component} from 'react';
 import Comment from '../Comment/Comment';
+import CommentForm from '../CommentForm/CommentForm';
 
 export default class CommentsList extends Component {
   constructor(props) {
@@ -33,9 +34,12 @@ export default class CommentsList extends Component {
 
     const commentsElement = commentsData.map(el =>  <li key={el.id}> <Comment comment = {el}/> </li>);
     return (
-      <ul>
-        {commentsElement}
-      </ul>
+      <div>
+        <ul>
+          {commentsElement}
+        </ul>
+        <CommentForm/>
+      </div>
     )
   }
 
