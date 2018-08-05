@@ -2,6 +2,8 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import './index.css';
 import registerServiceWorker from './registerServiceWorker';
+import store from './store'
+import {Provider} from 'react-redux';
 
 // data of articles
 import {articles} from "./fixtures/fixtures";
@@ -9,6 +11,7 @@ import {articles} from "./fixtures/fixtures";
 // imported components
 import ArticleList from "./components/ArticleList/ArticleList";
 import Select from 'react-select';
+import Couner from './components/Counter';
 
 registerServiceWorker();
 
@@ -19,9 +22,12 @@ const optionsForSelect = articles.map((article) => {
 
 ReactDOM.render(
   (
-    <div>
-      <Select options={optionsForSelect} isClearable isMulti/>
-      <ArticleList articleData = {articles} />
-    </div>
+    <Provider store = {store}>
+      <div>
+        <Couner/>
+        <Select options={optionsForSelect} isClearable isMulti/>
+        <ArticleList articleData = {articles} />
+      </div>
+    </Provider>
 
   ), document.getElementById('root'));
