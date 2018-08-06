@@ -26,7 +26,7 @@ ReactDOM.render(
       <div>
         <Couner/>
         <Select options={optionsForSelect} isClearable isMulti/>
-        <ArticleList articleData = {articles} />
+        <ArticleList />
       </div>
     </Provider>
 

@@ -1,9 +1,18 @@
 import React, {Component} from 'react';
+import {PropTypes} from 'prop-types'
+
 import Article from '../Article/Article'
 
-export default class ArticleList extends Component  {
+import {connect} from 'react-redux';
+
+class ArticleList extends Component  {
   state = {
     openArticleId: null
+  };
+
+  static propTypes = {
+    //from connect
+    articleData: PropTypes.array.isRequired,
   };
 
   render() {
@@ -36,3 +45,7 @@ export default class ArticleList extends Component  {
     return this.setState({openArticleId});
   }
 }
+
+export default connect(state => ({
+  articleData: state.articles
+})) (ArticleList);
