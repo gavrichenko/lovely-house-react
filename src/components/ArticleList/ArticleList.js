@@ -4,6 +4,7 @@ import {PropTypes} from 'prop-types'
 import Article from '../Article/Article'
 
 import {connect} from 'react-redux';
+import {filtrateArticleSelector} from '../../selectors/index';
 
 class ArticleList extends Component  {
   state = {
@@ -47,10 +48,5 @@ class ArticleList extends Component  {
 }
 
 export default connect((state) => {
-  const filteredArticlesId = state.filters.selected.map(article => article.value);
-  const allArticles = state.articles;
-  const resultData = allArticles.filter((article) => {
-    return filteredArticlesId.includes(article.id)
-  });
-  return {articleData: resultData}
+  return {articleData: filtrateArticleSelector(state)}
 })(ArticleList);
