@@ -46,6 +46,11 @@ class ArticleList extends Component  {
   }
 }
 
-export default connect(state => ({
-  articleData: state.articles
-})) (ArticleList);
+export default connect((state) => {
+  const filteredArticlesId = state.filters.selected.map(article => article.value);
+  const allArticles = state.articles;
+  const resultData = allArticles.filter((article) => {
+    return filteredArticlesId.includes(article.id)
+  });
+  return {articleData: resultData}
+})(ArticleList);

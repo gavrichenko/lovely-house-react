@@ -5,27 +5,19 @@ import registerServiceWorker from './registerServiceWorker';
 import store from './store'
 import {Provider} from 'react-redux';
 
-// data of articles
-import {articles} from "./fixtures/fixtures";
-
 // imported components
 import ArticleList from "./components/ArticleList/ArticleList";
-import Select from 'react-select';
-import Couner from './components/Counter';
+import Counter from './components/Counter';
+import SelectFilter from './components/Filter';
 
 registerServiceWorker();
-
-// list of options for react select component
-const optionsForSelect = articles.map((article) => {
-  return {value: article.id, label: article.title};
-});
 
 ReactDOM.render(
   (
     <Provider store = {store}>
       <div>
-        <Couner/>
-        <Select options={optionsForSelect} isClearable isMulti/>
+        <Counter />
+        <SelectFilter />
         <ArticleList />
       </div>
     </Provider>
