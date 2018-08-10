@@ -1,24 +1,26 @@
 import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import registerServiceWorker from './registerServiceWorker';
 import store from './store'
 import {Provider} from 'react-redux';
+// import registerServiceWorker from './registerServiceWorker';
 
 // imported components
-import ArticleList from "./components/ArticleList/ArticleList";
-import Counter from './components/Counter';
-import SelectFilter from './components/Filter';
+import App from './components/App';
+// import './index.css';
+// import ArticleList from "./components/ArticleList/ArticleList";
+// import Counter from './components/Counter';
+// import SelectFilter from './components/Filter';
 
-registerServiceWorker();
+// registerServiceWorker();
 
 ReactDOM.render(
   (
     <Provider store = {store}>
       <div>
-        <Counter />
-        <SelectFilter />
-        <ArticleList />
+        <App />
+        {/*<Counter />*/}
+        {/*<SelectFilter />*/}
+        {/*<ArticleList />*/}
       </div>
     </Provider>
 
