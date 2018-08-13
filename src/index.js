@@ -3,7 +3,7 @@ import ReactDOM from 'react-dom';
 import store from './store'
 import {Provider} from 'react-redux';
 import 'semantic-ui-css/semantic.min.css';
-// import registerServiceWorker from './registerServiceWorker';
+import registerServiceWorker from './registerServiceWorker';
 
 // imported components
 import App from './components/App';
@@ -12,17 +12,12 @@ import './index.css';
 // import Counter from './components/Counter';
 // import SelectFilter from './components/Filter';
 
-// registerServiceWorker();
+registerServiceWorker();
 
 ReactDOM.render(
   (
     <Provider store = {store}>
-      <div>
         <App />
-        {/*<Counter />*/}
-        {/*<SelectFilter />*/}
-        {/*<ArticleList />*/}
-      </div>
     </Provider>
 
   ), document.getElementById('root'));

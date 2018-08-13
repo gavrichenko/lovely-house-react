@@ -3,16 +3,24 @@ import {BrowserRouter as Router, Route} from 'react-router-dom';
 
 // import Counter from './Counter';
 import Header from './Header/Header';
-import About from './About/About';
+import Footer from './Footer/Footer';
+import ContentWrapper from './ContentWrapper/ContentWrapper';
+import GeneralLanding from './GeneralLanding/GeneralLanding';
+import ContactsPage from './ContactsPage/ContactsPage';
+import PromotionPage from './PromotionPage/PromotionPage';
 
 class App extends Component {
   render() {
     return (
       <Router>
-        <div className="body">
+        <div className="app">
           <Header />
-          <hr/>
-          <About />
+          <ContentWrapper>
+            <Route exact path="/" component={GeneralLanding} />
+            <Route path="/contacts" component={ContactsPage} />
+            <Route path="/promotion" component={PromotionPage} />
+          </ContentWrapper>
+          <Footer />
         </div>
       </Router>
     );
