@@ -1,16 +1,18 @@
 import React, {Component} from 'react';
 import {BrowserRouter as Router, Route} from 'react-router-dom';
 
-import Counter from './Counter';
-import FlowersList from './FlowersList/FlowersList';
+// import Counter from './Counter';
+import Header from './Header/Header';
+import About from './About/About';
 
 class App extends Component {
   render() {
     return (
       <Router>
-        <div className="app">
-          <Route path="/" component={Counter} />
-          <FlowersList />
+        <div className="body">
+          <Header />
+          <hr/>
+          <About />
         </div>
       </Router>
     );

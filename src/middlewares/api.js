@@ -14,11 +14,11 @@ export default store => next => action => {
   //  if callAPI param isn't exist nothing will happen...
   if (!callAPI) return next(action);
 
-  // on another case i'll call to the API
   next({
     ...rest, type: type + START
   });
 
+  // on another case i'll call to the API
   return axiosInstance(callAPI)
   .then(res => {
     console.log(`---- ${res.status} RESPONSE FROM BD: ${JSON.stringify(res.data)}`);

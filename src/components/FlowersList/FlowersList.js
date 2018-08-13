@@ -1,9 +1,9 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+
 import {getFlowers} from '../../AC'
 import {getFlower} from '../../AC'
-
-import Loader from '../Loader';
+import Spinner from '../Spinner';
 
 
 class FlowersList extends Component {
@@ -19,7 +19,7 @@ class FlowersList extends Component {
   render() {
     const {loading} = this.props;
     if (loading) {
-      return <Loader />
+      return <Spinner />
     }
 
     return (
