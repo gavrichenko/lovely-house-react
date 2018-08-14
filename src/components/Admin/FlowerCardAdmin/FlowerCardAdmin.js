@@ -19,15 +19,17 @@ class FlowerCardAdmin extends Component {
       baseURL: `https://salty-ridge-37026.herokuapp.com/`
     });
     this.state = {
-      nameRes: '',
-      priceRes: '',
-      descriptionRes: '',
+      name: '',
+      price: '',
+      description: '',
+      rating: '',
     };
   }
 
-  handleChangeName = (e) => {this.setState({nameRes: e.target.value})};
-  handleChangePrice = (e) => {this.setState({priceRes: e.target.value})};
-  handleChangeDescription = (e) => {this.setState({descriptionRes: e.target.value})};
+  handleChangeName = e => {this.setState({name: e.target.value})};
+  handleChangePrice = e => {this.setState({price: e.target.value})};
+  handleChangeDescription = e => {this.setState({description: e.target.value})};
+  handleChangeRating = (e, { rating, maxRating }) => this.setState({ rating, maxRating });
 
   handleGetReq = () => {
     return this.axiosInstance('flowers/')
@@ -39,14 +41,16 @@ class FlowerCardAdmin extends Component {
 
   handlePostReq = () => {
     return this.axiosInstance.post('flowers/', {
-      name: this.state.nameRes,
-      price: this.state.priceRes,
-      description: this.state.descriptionRes,
+      name: this.state.name,
+      price: this.state.price,
+      description: this.state.description,
+      rating: this.state.rating,
     })
       .then(res => {
         console.log(`---- ${res.status} RESPONSE FROM BD: ${JSON.stringify(res.data)}`);
         return res.data;
       })
+      .catch( e => console.error(e))
   };
 
 
@@ -61,27 +65,30 @@ class FlowerCardAdmin extends Component {
           <Card.Content>
             <Card.Header>
             <Input placeholder="Name"
-                   value={this.state.nameRes}
+                   value={this.state.name}
                    onChange={this.handleChangeName}
             />
             </Card.Header>
             <Card.Meta><a>Отзывы ({ commentsList})</a></Card.Meta>
             <Card.Description>
               <Input placeholder="Description"
-                     value={this.state.descriptionRes}
+                     value={this.state.description}
                      onChange={this.handleChangeDescription}
               />
             </Card.Description>
           </Card.Content>
           <Card.Content extra>
-            <Rating icon='star' rating={rating} maxRating={5} />
+            <Rating icon='star'  maxRating={5}
+                    rating={this.state.rating}
+                    onRate={this.handleChangeRating}
+            />
             <Button className="flowerCard__shopBtn" color='red' fluid>
-              <Button.Content hidden>Купить</Button.Content>
+              <Button.Content hidden />
               <Button.Content visible>
                 <Icon name='shop' />
                 <span className="flowerCard_price">
                   <Input placeholder="Price"
-                         value={this.state.priceRes}
+                         value={this.state.ratingRes}
                          onChange={this.handleChangePrice}
                   />
                 </span>
@@ -91,10 +98,7 @@ class FlowerCardAdmin extends Component {
         </Card>
 
         <div className="flowerCardAdmin__result">
-
-          <p><b>name</b>:{this.state.nameRes}</p>
-          <p><b>description</b>:{this.state.descriptionRes}</p>
-          <p><b>price</b>:{this.state.priceRes}</p>
+          <pre>{JSON.stringify(this.state, null, 2)}</pre>
           <Button onClick = {this.handleGetReq}>Get</Button>
           <Button onClick = {this.handlePostReq}>Post</Button>
         </div>

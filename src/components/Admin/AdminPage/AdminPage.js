@@ -20,7 +20,7 @@ class AdminPage extends Component {
 
     return (
       <div className="admin">
-        admin page
+        <h1>ADMIN PANEL</h1>
         <FlowerCardAdmin
           name = {element.name}
           price={element.price}
