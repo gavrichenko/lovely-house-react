@@ -23,15 +23,6 @@ class FlowersList extends Component {
 
     return (
         <div className="flowersList">
-
-          {/*<FlowerCard*/}
-            {/*name = "Цветочек"*/}
-            {/*price = {122}*/}
-            {/*description = "Цветочное описание"*/}
-            {/*rating = {1}*/}
-            {/*comments = {["Первый коммент", "Второй коммент", "assda"]}*/}
-          {/*/>*/}
-
           {this.getFlowersList()}
         </div>
     );
@@ -39,7 +30,7 @@ class FlowersList extends Component {
 
   getFlowersList() {
     const {flowersData} = this.props;
-    const data = flowersData.map(el =>
+    return flowersData.map(el =>
       <FlowerCard key={el._id}
         name = {el.name}
         price={el.price}
@@ -47,8 +38,6 @@ class FlowersList extends Component {
         rating = {el.rating}
         comments = {el.comments}
       />);
-    // const data = flowersData.map(el => <li key={el._id}>{el.name}</li>);
-    return data;
   };
 }
 

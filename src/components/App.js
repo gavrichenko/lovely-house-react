@@ -9,6 +9,7 @@ import GeneralLanding from './GeneralLanding/GeneralLanding';
 import ContactsPage from './ContactsPage/ContactsPage';
 import PromotionPage from './PromotionPage/PromotionPage';
 import ShopPage from './ShopPage/ShopPage';
+import AdminPage from './Admin/AdminPage/AdminPage';
 
 class App extends Component {
   render() {
@@ -21,6 +22,8 @@ class App extends Component {
             <Route path="/contacts" component={ContactsPage} />
             <Route path="/promotion" component={PromotionPage} />
             <Route path="/shop" component={ShopPage} />
+            {/*only for admin*/}
+            <Route path="/admin" component={AdminPage} />
           </ContentWrapper>
           <Footer />
         </div>
