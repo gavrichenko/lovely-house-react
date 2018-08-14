@@ -1,6 +1,6 @@
 .contacts {
     display: flex;
-
+    margin: 10px 10px;
 }
 
 .contacts__detail h1{
