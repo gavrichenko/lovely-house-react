@@ -23,7 +23,7 @@ export function changeSelection(selected) {
 export function getFlowers() {
   return {
     type: GET_FLOWERS,
-    callAPI: 'tasks/',
+    callAPI: 'flowers/',
   }
 }
 
