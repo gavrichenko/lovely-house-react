@@ -9,6 +9,7 @@
 html, body{
     height: 100%;
     /*margin: 5px 5px;*/
+    background: #F5F7FA;
 }
 
 .app {

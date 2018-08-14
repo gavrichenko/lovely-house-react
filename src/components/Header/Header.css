@@ -26,7 +26,11 @@ header a.item {
   font-size: 30px;
 }
 
-/*@media (max-width: 500px){*/
+.header__link {
+  display: flex;
+}
+
+@media (max-width: 767px){
   /*header{*/
     /*!* Изменяем направление оси в шапке на вертикальное *!*/
     /*flex-direction: column;*/
@@ -34,4 +38,10 @@ header a.item {
     /*!* Выравниваем элементы в «шапке» влево *!*/
     /*align-items: flex-start;*/
   /*}*/
-/*}*/
+  header a.item {
+    font-family: 'Bad Script', cursive;
+    font-size: 20px;
+  }
+
+
+}

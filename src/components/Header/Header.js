@@ -7,23 +7,23 @@ import './Header.css'
 class Header extends Component {
   state = {};
 
-  handleItemClick = (e, { name }) => this.setState({ activeItem: name })
+  handleItemClick = (e, { name }) => this.setState({ activeItem: name });
 
   render() {
-    const { activeItem } = this.state
+    const { activeItem } = this.state;
 
     return (
       <header className="header">
         <Menu stackable>
 
-          <Link to="/">
+          <Link to="/" className ="header__link">
             <Menu.Item>
               <img src={require('../../static/ico/flowers.png')} />
               <span className="nameOfLogo"><p>lovely-house</p></span>
             </Menu.Item>
           </Link>
 
-          <Link to="/promotion">
+          <Link  to="/promotion" className ="header__link">
             <Menu.Item
               name='promo'
               active={activeItem === 'promo'}
@@ -33,7 +33,7 @@ class Header extends Component {
             </Menu.Item>
           </Link>
 
-          <Link to="/contacts">
+          <Link to="/contacts" className ="header__link">
             <Menu.Item
               name='contacts'
               active={activeItem === 'contacts'}
@@ -43,43 +43,16 @@ class Header extends Component {
             </Menu.Item>
           </Link>
 
-          <Menu.Item name='sign-in' active={activeItem === 'sign-in'} onClick={this.handleItemClick}>
+          <Menu.Item className ="header__link"
+            name='sign-in'
+            active={activeItem === 'sign-in'}
+            onClick={this.handleItemClick}>
             Купить
           </Menu.Item>
         </Menu>
       </header>
     )
   }
-  // render() {
-  //   return (
-  //     <header className="header">
-  //
-  //       <div className="header__logo">
-  //           <Logo />
-  //       </div>
-  //
-  //       <div className="header__buttons">
-  //         <Button.Group color='black'>
-  //           <Button>Акции</Button>
-  //           <Button>Контакты</Button>
-  //           <Button>Купить</Button>
-  //         </Button.Group>
-  //       </div>
-  //       <div className="header__links">
-  //         <ul>
-  //           <li><a href="#">Акции</a></li>
-  //           <li><a href="#">Контакты</a></li>
-  //           <li><a href="#">Купить</a></li>
-  //         </ul>
-  //       </div>
-  //       <div className="header__basket">
-  //         Корзина(иконка)
-  //       </div>
-  //
-  //     </header>
-  //   )
-  // }
-
 }
 
 export default Header
