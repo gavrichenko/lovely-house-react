@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {Link} from 'react-router-dom';
-import { Menu } from 'semantic-ui-react'
+import { Menu, Icon } from 'semantic-ui-react'
 import './Header.css'
 
 
@@ -43,12 +43,38 @@ class Header extends Component {
             </Menu.Item>
           </Link>
 
-          <Menu.Item className ="header__link"
-            name='sign-in'
-            active={activeItem === 'sign-in'}
-            onClick={this.handleItemClick}>
-            Купить
-          </Menu.Item>
+          <Link to="/shop" className ="header__link">
+            <Menu.Item className ="header__link"
+              name='shop'
+              active={activeItem === 'shop'}
+              onClick={this.handleItemClick}>
+              Купить
+            </Menu.Item>
+          </Link>
+
+          {/*right menu*/}
+          <Menu.Menu position='right'>
+            <Link to="/basket" className ="header__link">
+              <Menu.Item
+                icon = 'shop'
+                name='Корзина'
+                active={activeItem === 'Корзина'}
+                onClick={this.handleItemClick}>
+                <Icon link name='shopping cart' size="large" />
+                <span>1500 руб</span>
+              </Menu.Item>
+            </Link>
+
+            <Link to="/login" className ="header__link">
+              <Menu.Item
+                icon = 'key'
+                name='Войти'
+                active={activeItem === 'Войти'}
+                onClick={this.handleItemClick}
+              />
+            </Link>
+          </Menu.Menu>
+
         </Menu>
       </header>
     )
