@@ -3,6 +3,10 @@ import PropTypes from 'prop-types'
 import { Card, Icon, Image, Button, Rating, Input } from 'semantic-ui-react'
 import './FlowerCardAdmin.css'
 import axios from 'axios';
+import {connect} from "react-redux";
+import {getFlower, getFlowers, addFlower} from "../../../AC";
+import Spinner from '../../Spinner';
+
 
 
 class FlowerCardAdmin extends Component {
@@ -32,31 +36,36 @@ class FlowerCardAdmin extends Component {
   handleChangeRating = (e, { rating, maxRating }) => this.setState({ rating, maxRating });
 
   handleGetReq = () => {
-    return this.axiosInstance('flowers/')
-      .then(res => {
-        console.log(`---- ${res.status} RESPONSE FROM BD: ${JSON.stringify(res.data)}`);
-        return res.data;
-      })
+    const {getFlowers, loading, loaded} = this.props;
+    console.log('getting flowers list');
+    if (!loading || ! loaded) {
+      getFlowers();
+    }
   };
 
   handlePostReq = () => {
-    return this.axiosInstance.post('flowers/', {
-      name: this.state.name,
-      price: this.state.price,
-      description: this.state.description,
-      rating: this.state.rating,
-    })
-      .then(res => {
-        console.log(`---- ${res.status} RESPONSE FROM BD: ${JSON.stringify(res.data)}`);
-        return res.data;
-      })
-      .catch( e => console.error(e))
+    const {addFlower, loading, loaded} = this.props;
+    const data = {
+        name: this.state.name,
+        price: this.state.price,
+        description: this.state.description,
+        rating: this.state.rating,
+    };
+    if (!loading || ! loaded) {
+      addFlower(data)
+    }
   };
 
-
+  getSpinner() {
+    const {loading} = this.props;
+    if (loading) {
+      return <Spinner />
+    }
+  }
 
   render() {
-    const {name, price, description, rating} = this.props;
+    // const {name, price, description, rating} = this.props;
+
     const commentsList = this.props.comments;
     return (
       <div className="flowerCardAdmin">
@@ -88,7 +97,7 @@ class FlowerCardAdmin extends Component {
                 <Icon name='shop' />
                 <span className="flowerCard_price">
                   <Input placeholder="Price"
-                         value={this.state.ratingRes}
+                         value={this.state.price}
                          onChange={this.handleChangePrice}
                   />
                 </span>
@@ -102,9 +111,19 @@ class FlowerCardAdmin extends Component {
           <Button onClick = {this.handleGetReq}>Get</Button>
           <Button onClick = {this.handlePostReq}>Post</Button>
         </div>
+
+        {this.getSpinner()}
+
       </div>
     )
   }
 }
 
-export default FlowerCardAdmin
+export default connect((state) => {
+  return {
+    flowersData: state.flowers.data,
+    flowerData: state.flowers.flowerData,
+    loading: state.flowers.loading,
+    loaded: state.flowers.loaded,
+  }
+}, {getFlowers, getFlower, addFlower}) (FlowerCardAdmin)

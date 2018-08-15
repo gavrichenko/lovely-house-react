@@ -65,7 +65,7 @@ class Header extends Component {
               </Menu.Item>
             </Link>
 
-            <Link to="/login" className ="header__link">
+            <Link to="/admin" className ="header__link">
               <Menu.Item
                 icon = 'key'
                 name='Войти'

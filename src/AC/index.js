@@ -1,4 +1,4 @@
-import {DELETE_ARTICLE, INCREMENT, CHANGE_SELECTION, GET_FLOWERS, GET_FLOWER} from "../constance";
+import {DELETE_ARTICLE, INCREMENT, CHANGE_SELECTION, GET_FLOWERS, GET_FLOWER, ADD_FLOWER} from "../constance";
 
 export function increment() {
   return {
@@ -24,6 +24,15 @@ export function getFlowers() {
   return {
     type: GET_FLOWERS,
     callAPI: 'flowers/',
+  }
+}
+
+export function addFlower(data) {
+  return {
+    type: ADD_FLOWER,
+    callAPI: 'flowers/',
+    typeOfMethod: 'post',
+    apiData: { data }
   }
 }
 
