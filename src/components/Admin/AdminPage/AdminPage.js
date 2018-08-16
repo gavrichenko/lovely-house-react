@@ -8,7 +8,7 @@ class AdminPage extends Component {
   render() {
     return (
       <div className="admin">
-        <h1>ADMIN PANEL</h1>
+        <h1>ADMIN PANEL</h1>s
         <FlowerCardAdmin/>
         <SearchSemantic />
       </div>

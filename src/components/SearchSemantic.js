@@ -2,6 +2,8 @@ import _ from 'lodash';
 import faker from 'faker';
 import React, { Component } from 'react';
 import { Search, Grid, Header, Segment } from 'semantic-ui-react';
+import {getFlowers} from "../AC";
+import {connect} from "react-redux";
 
 const source = _.times(10, () => ({
   title: faker.company.companyName(),
@@ -10,15 +12,35 @@ const source = _.times(10, () => ({
   price: faker.finance.amount(0, 100, 2, '$'),
 }));
 
-export default class SearchExampleStandard extends Component {
+
+
+class SearchExampleStandard extends Component {
+  componentDidMount() {
+    const {getFlowers, loading, loaded} = this.props;
+    console.log('getting flowers list for search component');
+    if (!loading || ! loaded) {
+      getFlowers();
+    }
+  }
+
   componentWillMount() {
     this.resetComponent()
   }
 
+  changeKeysForEachElemnt = () => {
+    const dataFromStore = this.props.flowersData;
+    return dataFromStore.map((el) =>{
+      return {
+        title: el.name,
+        description: el.description,
+        price: `${el.price} руб.`,
+        image: require('../static/img/1.jpg')
+      }
+    });
+  };
+
   resetComponent = () => this.setState({ isLoading: false, results: [], value: '' });
-
   handleResultSelect = (e, { result }) => this.setState({ value: result.title });
-
   handleSearchChange = (e, { value }) => {
     this.setState({ isLoading: true, value });
 
@@ -30,35 +52,29 @@ export default class SearchExampleStandard extends Component {
 
       this.setState({
         isLoading: false,
-        results: _.filter(source, isMatch),
+        results: _.filter(this.changeKeysForEachElemnt(), isMatch),
       })
-    }, 300)
+    }, 200)
   };
 
   render() {
     const { isLoading, value, results } = this.state;
-
     return (
-      <Grid>
-        <Grid.Column width={6}>
-          <Search
-            loading={isLoading}
-            onResultSelect={this.handleResultSelect}
-            onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
-            results={results}
-            value={value}
-            {...this.props}
-          />
-        </Grid.Column>
-        <Grid.Column width={10}>
-          <Segment>
-            <Header>State</Header>
-            <pre style={{ overflowX: 'auto' }}>{JSON.stringify(this.state, null, 2)}</pre>
-            <Header>Options</Header>
-            <pre style={{ overflowX: 'auto' }}>{JSON.stringify(source, null, 2)}</pre>
-          </Segment>
-        </Grid.Column>
-      </Grid>
+      <Search
+        loading={isLoading}
+        onResultSelect={this.handleResultSelect}
+        onSearchChange={_.debounce(this.handleSearchChange, 500, { leading: true })}
+        results={results}
+        value={value}
+        {...this.props}
+      />
     )
   }
 }
+
+export default connect((state) => {
+  return {
+    flowersData: state.flowers.data,
+  }
+}, {getFlowers}) (SearchExampleStandard)
+
