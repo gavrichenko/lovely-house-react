@@ -10,13 +10,13 @@ import Spinner from '../../Spinner';
 
 
 class FlowerCardAdmin extends Component {
-  static propTypes = {
-    name: PropTypes.string.isRequired,
-    price: PropTypes.number,
-    description: PropTypes.string,
-    rating: PropTypes.number,
-    comments: PropTypes.array,
-  };
+  // static propTypes = {
+  //   name: PropTypes.string.isRequired,
+  //   price: PropTypes.number,
+  //   description: PropTypes.string,
+  //   rating: PropTypes.number,
+  //   comments: PropTypes.array,
+  // };
   constructor(props){
     super();
     this.axiosInstance = axios.create({

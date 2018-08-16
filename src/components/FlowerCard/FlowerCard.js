@@ -21,7 +21,7 @@ class FlowerCard extends Component {
           <Image src={require('../../static/img/1.jpg')} />
           <Card.Content>
             <Card.Header>{name}</Card.Header>
-            <Card.Meta><a>Отзывы ({ commentsList.length })</a></Card.Meta>
+            <Card.Meta><a>Отзывы ({Math.floor(Math.random() * (0 - 20)) + 20})</a></Card.Meta>
             <Card.Description>{description}</Card.Description>
           </Card.Content>
           <Card.Content extra>
